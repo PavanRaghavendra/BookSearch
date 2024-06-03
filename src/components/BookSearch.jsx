@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom';
 
 const BookSearch = () => {
   const [query, setQuery] = useState('');
@@ -17,7 +18,12 @@ const BookSearch = () => {
             }
           };
           fetchResults();
-    }
+    };
+    const addToBookshelf = (book) => {
+        const bookshelf = JSON.parse(localStorage.getItem('bookshelf')) || [];
+        bookshelf.push(book);
+        localStorage.setItem('bookshelf', JSON.stringify(bookshelf));
+      };
   return (
     <div className='bg-black h-full sm:h-screen text-white flex flex-col items-center'>
         <div>
@@ -30,6 +36,7 @@ const BookSearch = () => {
         }
       />
       <button className='text-white border-2 border-blue-600 p-2 text-xl bg-blue-600 hover:bg-blue-500 rounded-md' onClick={Happen}>submit</button>
+      <Link to={'/shelf'} className='border-2 border-blue-600 p-2 text-xl bg-blue-600  rounded-sm hover:bg-blue-500 m-3'>Open Shelf</Link>
       </div>
       <hr className='bg-white w-full text-white mb-3'></hr>
       <div className='grid grid-cols-1 sm:grid-cols-2'>
@@ -39,6 +46,8 @@ const BookSearch = () => {
             <hr className='w-full'></hr>
             <p >Author: {book.author_name}</p>
             <p>First Publish Year: {book.first_publish_year}</p>
+            <button className='text-white border-2 border-blue-600 p-2 text-xl bg-blue-600 hover:text-white hover:bg-black rounded-md'
+            onClick={()=>addToBookshelf(book)}>Add</button>
           </div>
         ))}
       </div>
