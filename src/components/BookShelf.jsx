@@ -8,7 +8,7 @@ const BookShelf = () => {
                 setResults(bookshelf);
     },[])
   return (
-    <div className='bg-black'>
+    <div className='bg-black h-screen'>
     {results.length > 0 ? (
       <div className=" shadow-md rounded-lg p-6 text-white">
         <h2 className="text-2xl font-bold mb-4">Search Results</h2>
