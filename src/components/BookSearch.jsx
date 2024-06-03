@@ -47,7 +47,7 @@ const BookSearch = () => {
             <p >Author: {book.author_name}</p>
             <p>First Publish Year: {book.first_publish_year}</p>
             <button className='text-white border-2 border-blue-600 p-2 text-xl bg-blue-600 hover:text-white hover:bg-black rounded-md'
-            onClick={()=>addToBookshelf(book)}>Add</button>
+            onClick={()=>addToBookshelf(book)}>Add Shelf</button>
           </div>
         ))}
       </div>
